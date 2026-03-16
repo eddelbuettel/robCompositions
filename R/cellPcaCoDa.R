@@ -236,6 +236,7 @@ cellPcaCoDa <- function(x, k = NULL, method = "adaptive",
     ## so that coordinates with different total weights are treated correctly.
     Wz <- sqrt(W) * zc
     col_w   <- colSums(W)                        # length-p vector
+    col_w[col_w < 1e-10] <- 1e-10                # guard against zero weights
     normmat <- sqrt(outer(col_w, col_w))          # p x p normalisation matrix
     S <- crossprod(Wz) / normmat
     if (reg > 0) {
@@ -259,11 +260,13 @@ cellPcaCoDa <- function(x, k = NULL, method = "adaptive",
     sigma_new[sigma_new < 1e-10] <- 1e-10
     resid_std_new <- sweep(resid_new, 2, sigma_new, "/")
     obj_new <- sum(W * rho_fun(resid_std_new))
+    if (is.nan(obj_new) || is.na(obj_new)) obj_new <- Inf
     if (trace) {
       message(sprintf("Iteration %d: objective = %.6f, flagged = %d / %d cells",
                       iter, obj_new, sum(cellflags), n * D))
     }
-    if (abs(obj_old - obj_new) / max(1, abs(obj_old)) < tol) {
+    if (is.finite(obj_old) && is.finite(obj_new) &&
+        abs(obj_old - obj_new) / max(1, abs(obj_old)) < tol) {
       converged <- TRUE
       break
     }
