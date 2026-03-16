@@ -40,8 +40,9 @@
 #'   values whose rows represent compositions)
 #' @param k number of principal components to retain.  If \code{NULL}
 #'   (default), the Kaiser criterion is used (eigenvalues above the average).
-#' @param method contamination detection method: \code{"adaptive"} (default)
-#'   or \code{"fixed"}
+#' @param method contamination detection method: currently only
+#'   \code{"adaptive"} is implemented.  A \code{"fixed"} method is planned
+#'   for a future release.
 #' @param rho loss function: \code{"huber"} (default) or \code{"tukey"}
 #' @param alpha tuning parameter for the loss function.  If \code{NULL},
 #'   1.345 (Huber, 95\% efficiency) or 4.685 (Tukey) is used.
@@ -50,6 +51,10 @@
 #'   (default: 1e-6)
 #' @param reg regularisation parameter added to the diagonal of the
 #'   weighted covariance for high-dimensional compositions (default: 0)
+#' @param w0 floor weight assigned to contaminated cells (default: 0.1).
+#'   Must be in (0, 1).
+#' @param alpha_detect Bonferroni significance level for the cellwise
+#'   contamination detection test (default: 0.01).
 #' @param trace logical; if \code{TRUE}, iteration progress is printed
 #'
 #' @return An object of class \code{"cellPcaCoDa"} with components:
@@ -100,7 +105,8 @@
 cellPcaCoDa <- function(x, k = NULL, method = "adaptive",
                         rho = "huber", alpha = NULL,
                         maxiter = 100, tol = 1e-6,
-                        reg = 0, trace = FALSE) {
+                        reg = 0, w0 = 0.1, alpha_detect = 0.01,
+                        trace = FALSE) {
 
   ## --- Input validation ---
   if (!is.matrix(x) && !is.data.frame(x)) {
@@ -115,9 +121,14 @@ cellPcaCoDa <- function(x, k = NULL, method = "adaptive",
   if (any(x <= 0, na.rm = TRUE)) {
     stop("all values in 'x' must be strictly positive")
   }
+  if (anyNA(x)) {
+    stop("missing values in 'x' are not supported; consider imputation first")
+  }
   if (n < D) {
     warning("fewer observations than parts --- results may be unstable")
   }
+  method <- match.arg(method, choices = c("adaptive"))
+  rho <- match.arg(rho, choices = c("huber", "tukey"))
 
   ## --- Step 0: Transform to ilr coordinates ---
   z <- as.matrix(pivotCoord(x))   # n x (D-1)
@@ -191,7 +202,6 @@ cellPcaCoDa <- function(x, k = NULL, method = "adaptive",
   ## --- Step 2: Alternating optimisation ---
   obj_old <- Inf
   converged <- FALSE
-  w0 <- 0.1  # floor weight for contaminated cells
 
   for (iter in seq_len(maxiter)) {
 
@@ -206,7 +216,7 @@ cellPcaCoDa <- function(x, k = NULL, method = "adaptive",
     ## Projection-based detection: project standardised residuals onto
     ## each d_j and apply Bonferroni-corrected threshold.
     proj_scores <- resid_std %*% proj_dirs     # n x D
-    thresh <- qnorm(1 - 0.01 / (2 * D))       # Bonferroni-adjusted
+    thresh <- qnorm(1 - alpha_detect / (2 * D)) # Bonferroni-adjusted
     cellflags <- abs(proj_scores) > thresh
 
     ## (c) Map raw-part flags to ilr weights --- vectorised (Issue 32 fix)
@@ -234,12 +244,21 @@ cellPcaCoDa <- function(x, k = NULL, method = "adaptive",
 
     ## Eigen-decomposition
     eig <- eigen(S, symmetric = TRUE)
+    if (any(eig$values < 0)) {
+      warning("weighted covariance has negative eigenvalues; consider increasing 'reg'")
+    }
     P   <- eig$vectors[, seq_len(k), drop = FALSE]
     eigenvalues <- eig$values[seq_len(k)]
     scores <- zc %*% P
 
     ## (e) Check convergence on weighted objective
-    obj_new <- sum(W * rho_fun(resid_std))
+    ## Recompute residuals with updated PCA for consistent objective
+    fitted_new    <- tcrossprod(scores, P)
+    resid_new     <- zc - fitted_new
+    sigma_new     <- apply(resid_new, 2, mad)
+    sigma_new[sigma_new < 1e-10] <- 1e-10
+    resid_std_new <- sweep(resid_new, 2, sigma_new, "/")
+    obj_new <- sum(W * rho_fun(resid_std_new))
     if (trace) {
       message(sprintf("Iteration %d: objective = %.6f, flagged = %d / %d cells",
                       iter, obj_new, sum(cellflags), n * D))

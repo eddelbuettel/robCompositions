@@ -111,7 +111,7 @@ summary.cellPcaCoDa <- function(object, ...) {
 #' @seealso \code{\link{cellPcaCoDa}}, \code{\link{print.cellPcaCoDa}},
 #'   \code{\link{summary.cellPcaCoDa}}
 #' @keywords hplot
-#' @importFrom graphics image axis box mtext
+#' @importFrom graphics image axis box mtext title
 #' @importFrom stats biplot
 #' @export
 #' @method plot cellPcaCoDa

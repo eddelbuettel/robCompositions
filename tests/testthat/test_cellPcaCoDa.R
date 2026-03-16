@@ -96,3 +96,69 @@ test_that("contaminate_simplex handles epsilon=0", {
   ## Data unchanged
   expect_equal(cont$x_contaminated, as.matrix(arcticLake))
 })
+
+test_that("cellPcaCoDa works with D=2 (two-part composition)", {
+  set.seed(789)
+  x <- matrix(c(0.3, 0.7, 0.5, 0.5, 0.9, 0.1, 0.4, 0.6, 0.2, 0.8),
+              ncol = 2, byrow = TRUE) * 100
+  res <- cellPcaCoDa(x, k = 1)
+  expect_s3_class(res, "cellPcaCoDa")
+  expect_equal(ncol(res$scores), 1)
+  expect_equal(ncol(res$cellflags), 2)
+})
+
+test_that("cellPcaCoDa works with rho='tukey'", {
+  data(arcticLake)
+  res <- cellPcaCoDa(arcticLake, k = 2, rho = "tukey")
+  expect_s3_class(res, "cellPcaCoDa")
+  expect_equal(res$rho, "tukey")
+})
+
+test_that("cellPcaCoDa works with reg > 0 (regularization)", {
+  data(arcticLake)
+  res <- cellPcaCoDa(arcticLake, k = 2, reg = 0.1)
+  expect_s3_class(res, "cellPcaCoDa")
+  expect_true(res$converged)
+})
+
+test_that("cellPcaCoDa with maxiter=1 does not converge", {
+  data(arcticLake)
+  res <- cellPcaCoDa(arcticLake, k = 2, maxiter = 1)
+  expect_false(res$converged)
+  expect_equal(res$iterations, 1)
+})
+
+test_that("print and summary methods produce output", {
+  data(arcticLake)
+  res <- cellPcaCoDa(arcticLake, k = 2)
+  expect_output(print(res), "Cellwise-robust PCA")
+  expect_output(summary(res), "Importance of components")
+})
+
+test_that("contaminate_simplex works with type='replacement'", {
+  data(arcticLake)
+  cont <- contaminate_simplex(arcticLake, epsilon = 0.1, delta = 5,
+                              type = "replacement", seed = 10)
+  rs_orig <- rowSums(as.matrix(arcticLake))
+  rs_cont <- rowSums(cont$x_contaminated)
+  expect_equal(rs_cont, rs_orig, tolerance = 1e-10)
+})
+
+test_that("contaminate_simplex works with type='additive'", {
+  data(arcticLake)
+  cont <- contaminate_simplex(arcticLake, epsilon = 0.1, delta = 3,
+                              type = "additive", seed = 11)
+  rs_orig <- rowSums(as.matrix(arcticLake))
+  rs_cont <- rowSums(cont$x_contaminated)
+  expect_equal(rs_cont, rs_orig, tolerance = 1e-10)
+})
+
+test_that("cellPcaCoDa rejects negative values", {
+  x <- matrix(c(1, 2, 3, -1, 5, 6), ncol = 3)
+  expect_error(cellPcaCoDa(x), "strictly positive")
+})
+
+test_that("cellPcaCoDa rejects NA values", {
+  x <- matrix(c(1, 2, 3, NA, 5, 6), ncol = 3)
+  expect_error(cellPcaCoDa(x), "missing values")
+})
