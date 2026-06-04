@@ -107,8 +107,7 @@ pls_pb <-function(Xcoda, ycoda, version = "cov"){
 #'   \item{\code{varbal}}{}
 #' }
 #'
-#'
-#'
+#' @noRd
 fBalChipman_PLS<-function(C,r2,angle=TRUE, version = "cov"){
   
   # columns
@@ -219,7 +218,7 @@ fBalChipman_PLS<-function(C,r2,angle=TRUE, version = "cov"){
 #'   \item{\code{varbal}}{}
 #' }
 #'
-#'
+#' @noRd
 fBPMaxOrthNewChip_PLS<-function(Y,r1,angle=TRUE, version = "cov")
 {
   

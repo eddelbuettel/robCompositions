@@ -4,12 +4,12 @@ Title: Compositional Data Analysis
 Version: 2.5.0
 Date: 2026-06-03
 Depends:
-    R (>= 3.5.0),
-    ggplot2,
-    pls,
-    data.table
+    R (>= 3.5.0)
 LinkingTo: Rcpp, RcppEigen
 Imports:
+    ggplot2,
+    pls,
+    data.table,
     cvTools,
     fda,
     rrcov,

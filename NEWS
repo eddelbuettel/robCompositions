@@ -14,6 +14,9 @@ Changes in robCompositions version 2.5.0
   + cellPcaCoDa() detects period-2 limit cycles in the alternating scheme and
     stops at the stabilised cycle (new 'cycled' flag in the result) instead of
     running to maxiter.
+  + ggplot2, pls and data.table moved from 'Depends' to 'Imports' (they are no
+    longer attached to the search path; load them explicitly if your own code
+    relied on that attachment)
 
 Changes in robCompositions version 2.4.0
   + functions bpc, bpcPca, bpcPcaTab, bpcReg, bpcRegTab, bpcTab, bpcTabWrapper added
