@@ -76,14 +76,17 @@ test_that("propagation works for multiple contaminated parts", {
   expect_equal(delta_ilr_obs, delta_ilr_theory, tolerance = 1e-12)
 })
 
-test_that("single-part contamination affects all ilr coordinates", {
+test_that("single-part contamination has the predicted ilr propagation magnitude", {
+  ## Contaminating part j shifts every clr coordinate, but in a pivot ilr basis
+  ## the perturbation direction v_j = V^T (e_j - 1/D) may have exact zeros, so
+  ## "all ilr coordinates non-zero" does not hold.  The basis-independent,
+  ## theory-predicted quantity is the squared norm ||v_j||^2 = (D-1)/D.
   D <- 8
   V <- orthbasis(D)$V
 
   for (j in 1:D) {
-    d_j <- as.numeric(t(V) %*% (diag(D)[, j] - 1/D))
-    ## All D-1 ilr coordinates should be non-zero
-    expect_true(all(abs(d_j) > 1e-14),
-                info = sprintf("Part %d: some ilr coordinates are zero", j))
+    v_j <- as.numeric(t(V) %*% (diag(D)[, j] - 1/D))
+    expect_equal(sum(v_j^2), (D - 1) / D, tolerance = 1e-12,
+                 info = sprintf("Part %d", j))
   }
 })

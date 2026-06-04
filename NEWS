@@ -1,3 +1,20 @@
+Changes in robCompositions version 2.5.0
+  + new function cellPcaCoDa() for cellwise-robust PCA of compositional data,
+    with print/summary/plot methods, implementing Templ (2026, Advances in
+    Data Analysis and Classification)
+  + new function contaminate_simplex() to generate cellwise-contaminated
+    compositions
+  + cellPcaCoDa() defaults now follow the paper: Tukey biweight loss and MCD
+    initialisation (new 'init' argument); the cellwise detection step uses the
+    standardised projection test. Default-path results therefore differ from
+    earlier development versions.
+  + cellPcaCoDa() now requires at least 3 parts (D >= 3) and warns when
+    k = D-1, where the residual space is empty and cellwise detection is
+    disabled (use k < D-1).
+  + cellPcaCoDa() detects period-2 limit cycles in the alternating scheme and
+    stops at the stabilised cycle (new 'cycled' flag in the result) instead of
+    running to maxiter.
+
 Changes in robCompositions version 2.4.0
   + functions bpc, bpcPca, bpcPcaTab, bpcReg, bpcRegTab, bpcTab, bpcTabWrapper added
   + got rid of dependencies to packages car and sjmisc

@@ -25,7 +25,10 @@ print.cellPcaCoDa <- function(x, ...) {
   eV    <- x$eigenvalues / sum(x$eigenvalues_all)
   eVcum <- cumsum(eV)
   cat(sprintf("Components: %d\n", x$k))
-  cat(sprintf("Converged:  %s (iterations: %d)\n", x$converged, x$iterations))
+  cat(sprintf("Converged:  %s%s (iterations: %d)\n", x$converged,
+              if (isTRUE(x$cycled)) " (limit cycle)" else "", x$iterations))
+  cat(sprintf("Loss: %s   Initialisation: %s\n",
+              x$rho, if (is.null(x$init)) "classical" else x$init))
   cat(sprintf("Flagged cells: %d / %d (%.1f%%)\n",
               sum(x$cellflags), length(x$cellflags),
               100 * mean(x$cellflags)))
@@ -75,7 +78,9 @@ summary.cellPcaCoDa <- function(object, ...) {
   cat(sprintf("Components retained: %d of %d\n", object$k, length(ev_all)))
   cat(sprintf("Converged: %s (%d iterations)\n", object$converged,
               object$iterations))
-  cat(sprintf("Loss function: %s\n\n", object$rho))
+  cat(sprintf("Loss function: %s\n", object$rho))
+  cat(sprintf("Initialisation: %s\n\n",
+              if (is.null(object$init)) "classical" else object$init))
 
   cat("Importance of components:\n")
   print(round(importance, 4))

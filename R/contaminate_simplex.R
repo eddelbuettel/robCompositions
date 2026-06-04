@@ -9,7 +9,9 @@
 #' \code{"replacement"} sets the cell to \code{delta}, and
 #' \code{"additive"} adds \code{delta} times the row median.
 #' After contamination, affected rows are re-closed to preserve the original
-#' row sums.
+#' row sums.  The \code{"multiplicative"} type, with per-cell rate \code{epsilon}
+#' and magnitude \code{delta}, matches the scale-invariant cellwise
+#' contamination model used in the simulation study of Templ (2026).
 #'
 #' @param x clean compositional data (n x D matrix or data.frame with positive values)
 #' @param epsilon per-cell contamination probability (default: 0.05)
@@ -24,7 +26,13 @@
 #'   \item{epsilon}{contamination rate used}
 #'
 #' @author Matthias Templ
+#' @references
+#' Templ, M. (2026). Log-ratio propagation on the simplex: a theory of cellwise
+#'   contamination for compositional data. \emph{arXiv} 2605.31345.
+#' @seealso \code{\link{cellPcaCoDa}} (the estimator this model is designed to
+#'   stress-test), \code{\link{constSum}}
 #' @keywords manip
+#' @importFrom stats runif
 #' @export
 #' @examples
 #' data(arcticLake)

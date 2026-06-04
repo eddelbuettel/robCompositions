@@ -28,8 +28,7 @@
 #' @author Viktorie Nesrstová
 #'
 #' @references
-#' Erichson, N.B., Zheng, P. Manohar, K., Brunton, S.L., Kuntz, J.N., Aravkin, Y. (2020). Sparse principal component analysis via variable projection. SIAM J Appl Math. Available at:
-#' \url{https://epubs.siam.org/doi/10.1137/18M1211350}
+#' Erichson, N.B., Zheng, P. Manohar, K., Brunton, S.L., Kuntz, J.N., Aravkin, Y. (2020). Sparse principal component analysis via variable projection. SIAM J Appl Math.
 #' DOI: \doi{10.1137/18M1211350}
 #'
 #' Nesrstová, V., Wilms, I., Hron, K., Filzmoser, P. (2024). Identifying Important Pairwise Logratios in Compositional Data with Sparse Principal Component Analysis. Mathematical Geosciences.  Available at:

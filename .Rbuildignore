@@ -6,3 +6,9 @@
 ^\.Rproj\.user$
 ^packrat/
 ^\.Rprofile$
+^\.claude$
+^CLAUDE\.md$
+^cran-comments\.md$
+^\.github$
+^.*\.tar\.gz$
+^.*\.Rcheck$

@@ -102,6 +102,13 @@ C. Reimann, P. Filzmoser, R.G. Garrett, and R. Dutter (2008): Statistical
 Data Analysis Explained.  \emph{Applied Environmental Statistics with R}.
 John Wiley and Sons, Chichester, 2008.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/matthias-da/robCompositions}
+}
+
+}
 \author{
 Matthias Templ, Peter Filzmoser, Karel Hron,
 

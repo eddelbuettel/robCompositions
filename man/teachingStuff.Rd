@@ -14,8 +14,7 @@ A (tidy) data frame with 1216 observations on the following 4 variables.
 }
 }
 \source{
-OECD:
-\url{https://data.oecd.org/}
+OECD data portal, data.oecd.org
 }
 \description{
 Teaching stuff in selected countries
@@ -51,6 +50,6 @@ str(teachingStuff)
 OECD (2017), Teaching staff (indicator). doi: 10.1787/6a32426b-en (Accessed on 27 March 2017)
 }
 \author{
-translated from \url{https://data.oecd.org/} and restructured by Matthias Templ
+Translated from the OECD data portal (data.oecd.org) and restructured by Matthias Templ
 }
 \keyword{datasets}

@@ -14,8 +14,7 @@ A (tidy) data frame with 1216 observations on the following 4 variables.
 }
 }
 \source{
-OECD:
-\url{https://data.oecd.org/}
+OECD data portal, data.oecd.org
 }
 \description{
 Youth not in employment, education or training (NEET) in 43 countries from 1997 till 2015
@@ -49,6 +48,6 @@ str(unemployed)
 OECD (2017), Youth not in employment, education or training (NEET) (indicator). doi: 10.1787/72d1033a-en (Accessed on 27 March 2017)
 }
 \author{
-translated from \url{https://data.oecd.org/} and restructured by Matthias Templ
+Translated from the OECD data portal (data.oecd.org) and restructured by Matthias Templ
 }
 \keyword{datasets}

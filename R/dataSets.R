@@ -931,9 +931,8 @@ NULL
 #' \item{\code{year }}{Year} 
 #' \item{\code{value }}{COFOG spendings/expenditures}
 #' }
-#' @author translated from \url{https://data.oecd.org/} and restructured by Matthias Templ
-#' @source OECD:
-#' \url{https://data.oecd.org/}
+#' @author Translated from the OECD data portal (data.oecd.org) and restructured by Matthias Templ
+#' @source OECD data portal, data.oecd.org
 #' @keywords datasets
 #' @examples
 #' 
@@ -1762,10 +1761,9 @@ NULL
 #' \item{\code{year }}{Year} 
 #' \item{\code{value }}{Number of stuff}
 #' }
-#' @author translated from \url{https://data.oecd.org/} and restructured by Matthias Templ
+#' @author Translated from the OECD data portal (data.oecd.org) and restructured by Matthias Templ
 #' @references OECD (2017), Teaching staff (indicator). doi: 10.1787/6a32426b-en (Accessed on 27 March 2017)
-#' @source OECD:
-#' \url{https://data.oecd.org/}
+#' @source OECD data portal, data.oecd.org
 #' @keywords datasets
 #' @examples
 #' 
@@ -1993,10 +1991,9 @@ NULL
 #' \item{\code{year }}{Year} 
 #' \item{\code{value }}{percentage of unemployed}
 #' }
-#' @author translated from \url{https://data.oecd.org/} and restructured by Matthias Templ
+#' @author Translated from the OECD data portal (data.oecd.org) and restructured by Matthias Templ
 #' @references OECD (2017), Youth not in employment, education or training (NEET) (indicator). doi: 10.1787/72d1033a-en (Accessed on 27 March 2017)
-#' @source OECD:
-#' \url{https://data.oecd.org/}
+#' @source OECD data portal, data.oecd.org
 #' @keywords datasets
 #' @examples
 #' 

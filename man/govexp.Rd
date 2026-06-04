@@ -19,8 +19,7 @@ social protection. }
 }
 }
 \source{
-OECD:
-\url{https://data.oecd.org/}
+OECD data portal, data.oecd.org
 }
 \description{
 Government expenditures based on COFOG categories
@@ -41,6 +40,6 @@ data(govexp)
 str(govexp)
 }
 \author{
-translated from \url{https://data.oecd.org/} and restructured by Matthias Templ
+Translated from the OECD data portal (data.oecd.org) and restructured by Matthias Templ
 }
 \keyword{datasets}
