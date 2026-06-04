@@ -16,7 +16,7 @@
 #' 621--632.
 #' @keywords aplot
 #' @export
-#' @import ggfortify 
+#' @importFrom stats screeplot predict
 #' @method plot pcaCoDa
 #' @examples
 #' 
@@ -38,6 +38,10 @@ plot.pcaCoDa <- function(x, y, ..., which = 1, choices = 1:2){
     beschy <- if(x$method == "robust") "PC 2 (clr-robust)" else "PC 2 (clr-standard)"
     biplot(x, choices = choices)
   } else {
+    if (!requireNamespace("ggfortify", quietly = TRUE)) {
+      stop("Package 'ggfortify' is needed for which = 3 (autoplot biplot). Please install it.",
+           call. = FALSE)
+    }
     dat <-  x$princompOutputClr
     dat$scale <- c(dat$scale, 1)
     dat$center <- c(dat$center, 0)

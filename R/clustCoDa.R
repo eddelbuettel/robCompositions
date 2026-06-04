@@ -39,8 +39,7 @@
 #' @importFrom stats kmeans
 #' @import mclust
 #' @importFrom mclust Mclust 
-#' @importFrom cluster pam fanny 
-#' @importFrom kernlab specc
+#' @importFrom cluster pam fanny
 #' @importFrom mclust mclustBIC
 #' @examples
 #' data(expenditures)
@@ -73,6 +72,10 @@ clustCoDa <- function(x, k=NULL, method="Mclust",
                      "mcquitty","median",
                      "centroid")
   if(is.null(k) & method %in% partitioning) stop("provide the number of clusters")
+  if(grepl("^specc", method) && !requireNamespace("kernlab", quietly = TRUE)) {
+    stop("Package 'kernlab' is needed for spectral clustering (method = '", method,
+         "'). Please install it.", call. = FALSE)
+  }
   if(!is.null(distMethod)){
     if(distMethod == "Aitchison" & transformation %in% c("pivotCoord", "cenLR")) {
       stop("either apply a \nlog-ratio transformation or the Aitchison distance, \nnot both")
@@ -275,28 +278,28 @@ clustCoDa <- function(x, k=NULL, method="Mclust",
   #   clust$size <- table(a@cluster)   
   # }
   if( method == "speccRbfdot" ){
-    a <- specc(as.matrix(d),centers=k)
+    a <- kernlab::specc(as.matrix(d),centers=k)
   }
   if( method == "speccPolydot" ){
-    a <- specc(as.matrix(d),centers=k, kernel="polydot")
+    a <- kernlab::specc(as.matrix(d),centers=k, kernel="polydot")
   }   #  vanilladot tanhdot laplacedot besseldot anovadot splinedot
   if( method == "speccVanilladot" ){
-    a <- specc(as.matrix(x),centers=k, kernel="vanilladot")
+    a <- kernlab::specc(as.matrix(x),centers=k, kernel="vanilladot")
   }
   if( method == "speccTanhdot" ){
-    a <- specc(as.matrix(x),centers=k, kernel="tanhdot")
+    a <- kernlab::specc(as.matrix(x),centers=k, kernel="tanhdot")
   }
   if( method == "speccLaplacedot" ){
-    a <- specc(as.matrix(x),centers=k, kernel="laplacedot")
+    a <- kernlab::specc(as.matrix(x),centers=k, kernel="laplacedot")
   }
   if( method == "speccBesseldot" ){
-    a <- specc(as.matrix(x),centers=k, kernel="besseldot")
+    a <- kernlab::specc(as.matrix(x),centers=k, kernel="besseldot")
   }
   if( method == "speccAnovadot" ){
-    a <- specc(as.matrix(x),centers=k, kernel="anovadot")
+    a <- kernlab::specc(as.matrix(x),centers=k, kernel="anovadot")
   }
   if( method == "speccSplinedot" ){
-    a <- specc(as.matrix(x),centers=k, kernel="splinedot")
+    a <- kernlab::specc(as.matrix(x),centers=k, kernel="splinedot")
   }
   if (!requireNamespace("fpc", quietly = TRUE)) {
     stop("Package 'fpc' is required for this function. Please install it.")

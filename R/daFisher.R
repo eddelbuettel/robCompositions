@@ -57,7 +57,7 @@
 #' Series B, 10, 159-203.
 #' @keywords multivariate
 #' @export
-#' @import rrcov MASS
+#' @import MASS
 #' @examples
 #' ## toy data (non-compositional)
 #' require(MASS)

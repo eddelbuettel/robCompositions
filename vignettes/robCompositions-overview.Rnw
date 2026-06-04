@@ -18,7 +18,7 @@
 \title{Overview of the robCompositons package. Compositional Data Analysis using Robust Methods.}
 \authors{M. TEMPL$^{1,3}$, P. FILZMOSER$^1$ and K. HRON$^2$}
 \affiliation{$^1$Department of Statistics and Probability Theory -  
-Vienna University of Technology, Austria \email{templ@tuwien.ac.at}\\
+Vienna University of Technology, Austria \email{matthias.templ@gmail.com}\\
 $^2$Department of Mathematical Analysis and Applications of Mathematics -  
 Palack\'y University, Czech Republic\\
 $^3$Statistics Austria, Vienna, Austria}
@@ -38,11 +38,11 @@ software for statistics and data analysis. In addition, \texttt{R} becomes
 quite popular as a (programming) language, ranked
 currently (February 2011) on place 25 at the TIOBE Programming Community Index 
 (e.g., Matlab: 29, SAS: 30, see 
-\href{http://www.tiobe.com}{http://www.tiobe.com}).
+\href{https://www.tiobe.com/}{https://www.tiobe.com/}).
 
 The basic \texttt{R} environment can be downloaded from the
 comprehensive \texttt{R} archive network
-(\href{http://cran.r-project.org}{http://cran.r-project.org}). \texttt{R} is
+(\href{https://cran.r-project.org/}{https://cran.r-project.org/}). \texttt{R} is
 enhanceable via \textit{packages} which consist of code and structured standard
 documentation including code application examples and possible further documents
 (so called \textit{vignettes}) showing further applications of the
@@ -319,7 +319,7 @@ Analysis: Theory and Applications} \citep{Vera11}. \\
 
 The package comes with the \textit{General Public Licence, version 2}, and can
 simple be downloaded at
-\href{http://cran.r-project.org/package=robCompositions}{http://cran.r-project.org/package=robCompositions}
+\href{https://CRAN.R-project.org/package=robCompositions}{https://CRAN.R-project.org/package=robCompositions}
 \ .\\
 
 

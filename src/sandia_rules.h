@@ -1,4 +1,4 @@
-//Copiright: it is possible to copy pieces of code but not modify it
+// Portions adapted from the SANDIA_RULES library by John Burkardt, distributed under the GNU LGPL license.
 # include <fstream>
 # include <string>
 

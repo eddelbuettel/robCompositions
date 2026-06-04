@@ -16,9 +16,6 @@ Imports:
     cluster,
     dplyr,
     magrittr,
-    GGally,
-    ggfortify,
-    kernlab,
     MASS,
     mclust,
     tidyr,
@@ -33,6 +30,9 @@ Imports:
 Suggests:
     e1071,
     fpc,
+    GGally,
+    ggfortify,
+    kernlab,
     knitr,
     testthat
 VignetteBuilder: knitr

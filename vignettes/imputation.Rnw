@@ -48,13 +48,13 @@ concordance=TRUE
 \begin{description}
 \item $^{*}\;$  Department of Statistics and Probability Theory, Vienna
 University of Technology, Wiedner Hauptstr. 8-10, 1040 Vienna, Austria.
-(\href{templ@tuwien.ac.at}{templ@tuwien.ac.at}) \\
+(\href{mailto:matthias.templ@gmail.com}{matthias.templ@gmail.com}) \\
 \item $^{**}\;$    Department of Methodology, Statistics Austria, Guglgasse 13,
 1110 Vienna, Austria.
-(\href{matthias.templ@statistik.gv.at}{matthias.templ@statistik.gv.at}) and \\
+(\href{mailto:matthias.templ@gmail.com}{matthias.templ@gmail.com}) and \\
 \item $^{***}\;$ Department of Mathematical Analysis and Applications of
 Mathematics, Palack\'y University, Tomkova 40, 779 00 Olomouc, Czech Republic. 
-  (\href{hronk@seznan.cz}{hronk@seznan.cz})
+  (\href{mailto:karel.hron@upol.cz}{karel.hron@upol.cz})
 \end{description}
 }
 \end{flushleft}

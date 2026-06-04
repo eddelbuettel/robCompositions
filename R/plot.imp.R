@@ -76,7 +76,6 @@
 #' coordinates} Journal of the American Statistical Association 85, 664--675.
 #' @keywords aplot hplot
 #' @export
-#' @importFrom GGally ggpairs
 #' @importFrom MASS parcoord
 #' @method plot imp
 #' @examples
@@ -312,9 +311,13 @@ function (x, ..., which=1, ord=1:ncol(x),
     args$col <- c(args$col[1], args$col[3], args$col[2])
     args$pch <- args$pch[2:1]
     args$diagonal <- "histogram"
-    ## new in GGally:
+    ## new in GGally (suggested):
+    if (!requireNamespace("GGally", quietly = TRUE)) {
+      stop("Package 'GGally' is needed for this plot (which = 3). Please install it.",
+           call. = FALSE)
+    }
     x <- cbind(x, miss=args$group)
-    print(ggpairs(x, colour='miss', alpha=0.4, shape='miss'))
+    print(GGally::ggpairs(x, colour='miss', alpha=0.4, shape='miss'))
 #    do.call(scatterplotMatrix, args)
     invisible()
   }
