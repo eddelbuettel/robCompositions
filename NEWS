@@ -1,4 +1,9 @@
 Changes in robCompositions version 2.6.0
+  + new function cellNetCoDa() for cellwise-robust network (Gaussian graphical
+    model) estimation of compositional data, with print/summary/plot methods.
+    Cellwise outliers are detected and down-weighted before a sparse graph is
+    estimated by neighbourhood selection ("mb") or the graphical lasso on the
+    clr covariance ("glasso"); the penalty is chosen by StARS.
   + imputeBDLs() has been renamed to imputeBDL(). imputeBDLs() is kept as a
     deprecated alias and will be removed in a future release.
   + impRZilr() is deprecated and is now an alias of imputeBDL() (the same method:

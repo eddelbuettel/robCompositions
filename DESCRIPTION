@@ -32,6 +32,8 @@ Suggests:
     fpc,
     GGally,
     ggfortify,
+    glmnet,
+    glasso,
     kernlab,
     knitr,
     testthat
