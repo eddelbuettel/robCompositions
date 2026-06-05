@@ -345,9 +345,10 @@ imputeUDLs <-
       x
     }
     x <- checkDL(x, dl, indexFinalCheck)
-    res <- list(x = x, criteria = criteria, iter = it, maxit = maxit, 
-                wind = w, nComp = nC, nPred = nPred, variation = variation, 
+    res <- list(x = x, criteria = criteria, iter = it, maxit = maxit,
+                wind = w, nComp = nC, nPred = nPred, variation = variation,
                 method = method, dl = dl)
+    class(res) <- "replaced"
     return(res)
   }
 

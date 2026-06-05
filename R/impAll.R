@@ -6,7 +6,7 @@
 #' with the negative value of the detection limit (per variable). Missing
 #' values should be coded as NA.
 #' 
-#' This is a wrapper function that calls \emph{impRZilr()} for the replacement
+#' This is a wrapper function that calls \emph{imputeBDL()} for the replacement
 #' of zeros and \emph{impCoda} for the imputation of missing values
 #' sequentially. The detection limit is automatically derived form negative
 #' numbers in the data set.
@@ -14,7 +14,7 @@
 #' @param x data frame
 #' @return The imputed data set.
 #' @note This function is mainly used by the compositionsGUI.
-#' @seealso \code{\link{impCoda}}, \code{\link{impRZilr}}
+#' @seealso \code{\link{impCoda}}, \code{\link{imputeBDL}}
 #' @export
 #' @references Hron, K., Templ, M., Filzmoser, P. (2010) Imputation of
 #' missing values for compositional data using classical and robust methods,
@@ -50,8 +50,8 @@ function(x) {
 		temp <- x
 		temp[temp < 0] = 0
 
-		res <- impRZilr(temp, dl=maxLimits)
-		x = res$xImp
+		res <- imputeBDL(temp, dl=maxLimits, method="pls", variation=FALSE)
+		x = res$x
 	}
 
 	return(x)

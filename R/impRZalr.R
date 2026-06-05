@@ -45,7 +45,7 @@
 #' x[x[,1] < 5, 1] <- 0
 #' x[x[,2] < 47, 2] <- 0
 #' xia <- impRZalr(x, pos=3, dl=c(5,47), eps=0.05)
-#' xia$xImp
+#' xia$x
 #' 
 impRZalr <- function(x, pos=ncol(x), dl=rep(0.05, ncol(x)-1), 
                      eps=0.0001, maxit=50, bruteforce=FALSE, 

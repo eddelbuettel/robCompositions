@@ -1,3 +1,24 @@
+Changes in robCompositions version 2.6.0
+  + imputeBDLs() has been renamed to imputeBDL(). imputeBDLs() is kept as a
+    deprecated alias and will be removed in a future release.
+  + impRZilr() is deprecated and is now an alias of imputeBDL() (the same method:
+    EM-based replacement of rounded zeros in pivot coordinates). Its results are
+    unchanged; please switch to imputeBDL().
+  + imputeBDL() now correctly imputes values below the detection limit even when
+    they are supplied as small positive numbers rather than exact zeros. Earlier
+    imputeBDLs() silently skipped such values because the checkData() thresholding
+    result was discarded. Results for the documented usage (rounded zeros pre-coded
+    as 0) are unchanged.
+  + impAll() no longer returns NULL for data containing rounded zeros (it read a
+    list element that no longer exists); it now calls imputeBDL() internally.
+  + removed a stray diagnostic print() from the rounded-zero imputation, a
+    duplicate internal impAll() definition, and broken non-default code paths
+    (the 'test' argument of imputeBDLs() and the unused 'variation' branch of
+    impRZilr()).
+  + imputeUDLs() now returns an object of class "replaced", and the imputed-zero
+    index ('wind') of imputeBDL()/imputeUDLs() is returned aligned with the
+    original column order.
+
 Changes in robCompositions version 2.5.0
   + new function cellPcaCoDa() for cellwise-robust PCA of compositional data,
     with print/summary/plot methods, implementing Templ (2026, Advances in

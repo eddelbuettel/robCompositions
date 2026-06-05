@@ -20,7 +20,7 @@ with the negative value of the detection limit (per variable). Missing
 values should be coded as NA.
 }
 \details{
-This is a wrapper function that calls \emph{impRZilr()} for the replacement
+This is a wrapper function that calls \emph{imputeBDL()} for the replacement
 of zeros and \emph{impCoda} for the imputation of missing values
 sequentially. The detection limit is automatically derived form negative
 numbers in the data set.
@@ -45,6 +45,6 @@ compositional data: Classical and robust approaches, \emph{Computational
 Statistics}, 56 (2012), 2688 - 2704.
 }
 \seealso{
-\code{\link{impCoda}}, \code{\link{impRZilr}}
+\code{\link{impCoda}}, \code{\link{imputeBDL}}
 }
 \keyword{manip}

@@ -1,8 +1,8 @@
 Package: robCompositions
 Type: Package
 Title: Compositional Data Analysis
-Version: 2.5.0
-Date: 2026-06-03
+Version: 2.6.0
+Date: 2026-06-05
 Depends:
     R (>= 3.5.0)
 LinkingTo: Rcpp, RcppEigen
