@@ -51,7 +51,13 @@ DOIs.
 
 ## Downstream dependencies
 
-No reverse dependencies are broken by this release. The public API is only
-extended (new functions) or extended compatibly: `imputeBDLs()` and `impRZilr()`
-remain available as deprecated aliases with unchanged results for their
-documented usage. Confirmed with a reverse-dependency check at submission time.
+This version has three reverse dependencies on CRAN: `baker` and `CMMs`
+(Imports) and `classmap` (Suggests). They use only robCompositions functions
+and data that are unchanged in this release -- `aDist()` and `cenLR()` (baker),
+`pivotCoord()` (CMMs), and the `nutrients_branded` data set (classmap) -- and
+each declares `ggplot2` itself, so the earlier move of `ggplot2`/`pls`/
+`data.table` from `Depends` to `Imports` does not affect them. The 2.6.0 changes
+are additive (new `cellNetCoDa()`, `cellPcaCoDa()`, `contaminate_simplex()`)
+apart from a fix confined to the deprecated `imputeBDL` family (`imputeBDLs()`
+and `impRZilr()` remain available as aliases), which no reverse dependency
+calls. No reverse dependencies are broken by this release.
